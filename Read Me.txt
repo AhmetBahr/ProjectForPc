@@ -1,1 +1,2 @@
-Update1 = InputAction ile karakter yürütme kodları ve blend tree ile animasyon çağırma kodları 
+Update1 = InputAction ile karakter yürütme kodları ve blend tree ile animasyon çağırma kodları
+Update2 = Projede ilerlendi  

@@ -17,16 +17,19 @@ public class ThirdPersonController : MonoBehaviour
     private Vector3 forceDirection = Vector3.zero;
 
     [SerializeField] private Camera playerCamere;
+    private Animator animator;
 
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
         playerActionAsset = new ThirdPersonActionAsset();
+        animator = this.GetComponent<Animator>();   
     }
 
     private void OnEnable()
     {
         playerActionAsset.Player.Jump.started += DoJump;
+        playerActionAsset.Player.Attack.started += DoAttack;
         move = playerActionAsset.Player.Move;
         playerActionAsset.Player.Enable();
     }
@@ -34,6 +37,8 @@ public class ThirdPersonController : MonoBehaviour
     private void OnDisable()
     {
         playerActionAsset.Player.Jump.started -= DoJump;
+        playerActionAsset.Player.Attack.started -= DoAttack;
+
         playerActionAsset.Player.Disable();
     }
 
@@ -90,6 +95,14 @@ public class ThirdPersonController : MonoBehaviour
         {
             forceDirection += Vector3.up * jumpForce;
         }
+
+
+    }
+
+    private void DoAttack(InputAction.CallbackContext obj)
+    {
+
+        animator.SetTrigger("attack");
 
 
     }
